@@ -6,7 +6,7 @@ import pandas as pd
 import numpy as np
 
 #file name to save web scrapings from apartments.com; expects user to write to a .csv file
-file_path = 'apartment_webscrape.csv'
+file_path = 'apartment_webscrape_LA.csv'
 #apartments.com page for webscraping
 url = 'https://www.apartments.com/los-angeles-ca/' 
 
@@ -28,7 +28,7 @@ page_range = bs.find_all('span', class_="pageRange")
 if (page_range): 
     temp_string = re.search(r'.* of \d*', page_range[0].contents[0]).string
     temp_string = re.sub(r'.* of (\d*)', r'\1', temp_string).strip()
-    page_max = type(int(temp_string))
+    page_max = int(temp_string)
 else:
     for i in range(5,1,-1):
         temp_string = bs.find_all('a', {'data-page': str(i)})
